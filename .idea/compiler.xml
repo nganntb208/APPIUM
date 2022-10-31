@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="appium" />
+        <module name="sdetpro_k11_appium" />
       </profile>
     </annotationProcessing>
   </component>
