@@ -16,13 +16,12 @@ public class AppiumLaunchTest {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability("platformName", "android");
         desiredCapabilities.setCapability("automationName", "uiautomator2");
-        desiredCapabilities.setCapability("udid", "6c0a96e0");
+        desiredCapabilities.setCapability("udid", "emulator-5554");
         desiredCapabilities.setCapability("appPackage", "com.wdiodemoapp");
         desiredCapabilities.setCapability("appActivity", "com.wdiodemoapp.MainActivity");
 
         // Specify Appium Server URL
         URL appiumServer = null;
-
         try {
             appiumServer = new URL("http://localhost:4723/wd/hub");
         } catch (Exception e) {
@@ -33,12 +32,11 @@ public class AppiumLaunchTest {
             throw new RuntimeException("[ERR] Somehow, we couldn't construct Appium server URL");
         }
 
-        driver = new AndroidDriver<>(appiumServer, desiredCapabilities);
+        driver = new AndroidDriver<MobileElement>(appiumServer, desiredCapabilities);
 
         // DEBUG PURPOSE ONLY
         Thread.sleep(3000);
 
         driver.quit();
-
     }
 }
