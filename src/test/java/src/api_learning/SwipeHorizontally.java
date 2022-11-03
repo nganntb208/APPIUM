@@ -23,7 +23,7 @@ public class SwipeHorizontally {
             MobileElement navFormsBtnElem = appiumDriver.findElement(MobileBy.AccessibilityId("Swipe"));
             navFormsBtnElem.click();
 
-            // Wait until we are on the new Screen after naviagting
+            // Wait until we are on the new Screen after navigating
             WebDriverWait wait = new WebDriverWait(appiumDriver, 5L);
             wait.until(ExpectedConditions
                     .visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Swipe Horizontal\")")));
