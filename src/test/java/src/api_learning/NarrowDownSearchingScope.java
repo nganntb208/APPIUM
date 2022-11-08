@@ -13,31 +13,23 @@ import src.driver.DriverFactory;
 import src.driver.Platform;
 
 import java.time.Duration;
+import java.util.List;
 
-public class SwipeHorizontally {
+public class NarrowDownSearchingScope {
 
     public static void main(String[] args) {
         AppiumDriver<MobileElement> appiumDriver = DriverFactory.getDriver(Platform.ANDROID);
         try {
-            // Navigate to login Screen
-            MobileElement navFormsBtnElem = appiumDriver.findElement(MobileBy.AccessibilityId("Swipe"));
-            navFormsBtnElem.click();
-
-            // Wait until we are on the new Screen after navigating
-            WebDriverWait wait = new WebDriverWait(appiumDriver, 5L);
-            wait.until(ExpectedConditions
-                    .visibilityOfElementLocated(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Swipe Horizontal\")")));
-
             // Get Mobile Screen
             Dimension windowSize = appiumDriver.manage().window().getSize();
             int screenHeight = windowSize.getHeight();
             int screenWidth = windowSize.getWidth();
 
             // Calculate Touch points
-            int xStartPoint = 85 * screenWidth / 100;
-            int xEndPoint = 10 * screenWidth / 100;
-            int yStartPoint = 110 * screenWidth / 100;
-            int yEndPoint = 110 * screenWidth / 100;
+            int xStartPoint = 50 * screenWidth / 100;
+            int xEndPoint = 50 * screenWidth / 100;
+            int yStartPoint = 0;
+            int yEndPoint = 30 * screenWidth / 100;
 
             // Convert point to coordinate
             PointOption startPoint = new PointOption<>().withCoordinates(xStartPoint, yStartPoint);
@@ -45,18 +37,21 @@ public class SwipeHorizontally {
 
             // Touch Action
             TouchAction touchAction = new TouchAction(appiumDriver);
-            final int MAX_SWIPE_TIME = 5;
-            for (int i =0; i < MAX_SWIPE_TIME; i++) {
-                touchAction
-                        .press(startPoint)
-                        .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
-                        .moveTo(endPoint)
-                        .release()
-                        .perform();
+            touchAction
+                    .press(startPoint)
+                    .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
+                    .moveTo(endPoint)
+                    .release()
+                    .perform();
+            List<MobileElement> notificationsElem = appiumDriver.findElements(MobileBy.xpath("//android.widget.LinearLayout[@resource-id=\"com.android.systemui:id/quick_qs_panel\"]//android.widget.Switch"));
+            if (notificationsElem.isEmpty()) {
+                throw new RuntimeException("[ERR] There is no notification");
+            } else {
+                for (MobileElement notificationElem : notificationsElem) {
+                    MobileElement notificationLabelElem = notificationElem.findElement(MobileBy.id("com.android.systemui:id/tile_label"));
+                    System.out.println(notificationLabelElem.getText());
+                }
             }
-
-            // Find Active Btn and click
-            //appiumDriver.findElement(MobileBy.AccessibilityId("button-Active")).click();
 
             // Debug purpose ONLY
             Thread.sleep(3000);
@@ -66,5 +61,6 @@ public class SwipeHorizontally {
         }
 
         appiumDriver.quit();
+
     }
 }
