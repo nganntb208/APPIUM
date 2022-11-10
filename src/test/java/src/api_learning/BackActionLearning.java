@@ -62,8 +62,8 @@ public class BackActionLearning {
 //            TouchAction touchAction = new TouchAction(appiumDriver);
 //            touchAction
 //                    .press(startPoint)
-//                    .moveTo(endPoint)
 //                    .waitAction(new WaitOptions().withDuration(Duration.ofMillis(1000)))
+//                    .moveTo(endPoint)
 //                    .release()
 //                    .perform();
 
