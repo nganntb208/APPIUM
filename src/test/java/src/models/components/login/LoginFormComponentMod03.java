@@ -19,7 +19,10 @@ public class LoginFormComponentMod03 {
     }
 
     public LoginFormComponentMod03 inputUsername(String username) {
-        appiumDriver.findElement(usernameSel).sendKeys(username);
+        MobileElement usernameElem = appiumDriver.findElement(usernameSel);
+        usernameElem.clear();
+        usernameElem.sendKeys(username);
+        //appiumDriver.findElement(usernameSel).sendKeys(username);
         return this;
     }
 
