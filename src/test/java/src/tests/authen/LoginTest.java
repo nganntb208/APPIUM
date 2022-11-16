@@ -2,6 +2,7 @@ package src.tests.authen;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import org.apache.commons.logging.Log;
 import org.testng.annotations.Test;
 import src.driver.DriverFactory;
 import src.driver.Platform;
@@ -16,14 +17,14 @@ public class LoginTest {
     @Test
     public void testLogin() {
         AppiumDriver<MobileElement> appiumDriver = DriverFactory.getDriver(Platform.ANDROID);
-        List<LoginCred> loginCredsdata = new ArrayList<>();
-        loginCredsdata.add(new LoginCred("", ""));
-        loginCredsdata.add(new LoginCred("teo@sth.com", "1234567"));
-        loginCredsdata.add(new LoginCred("teo@", "12345678"));
-        loginCredsdata.add(new LoginCred("teo@sth.com", "12345678"));
+//        List<LoginCred> loginCredsData = new ArrayList<>();
+//        loginCredsData.add(new LoginCred("", ""));
+//        loginCredsData.add(new LoginCred("teo@sth.com", "1234567"));
+//        loginCredsData.add(new LoginCred("teo@", "12345678"));
+//        loginCredsData.add(new LoginCred("teo@sth.com", "12345678"));
 
         try {
-            for (LoginCred loginCred : loginCredsdata) {
+            for (LoginCred loginCred : loginCredDataSet()) {
                 String username = loginCred.getUsername();
                 String password = loginCred.getPassword();
                 LoginFlow loginFlow = new LoginFlow(appiumDriver, username, password);
@@ -37,5 +38,14 @@ public class LoginTest {
         }
 
         appiumDriver.quit();
+    }
+
+    private List<LoginCred> loginCredDataSet() {
+        List<LoginCred> loginCredsData = new ArrayList<>();
+        loginCredsData.add(new LoginCred("", ""));
+        loginCredsData.add(new LoginCred("teo@sth.com", "1234567"));
+        loginCredsData.add(new LoginCred("teo@", "12345678"));
+        loginCredsData.add(new LoginCred("teo@sth.com", "12345678"));
+        return loginCredsData;
     }
 }
