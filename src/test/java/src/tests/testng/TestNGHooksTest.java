@@ -35,7 +35,7 @@ public class TestNGHooksTest {
     public void testA1() {
         System.out.println("\t\t\t\ttestA1");
         String actualResult = "sth";
-        String expectedResult = "sth_";
+        String expectedResult = "sth";
 
         Assert.assertEquals(actualResult, expectedResult, "[ERR] Login username placeholder text incorrect");
         Assert.assertFalse(true, "......");

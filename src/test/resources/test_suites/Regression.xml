@@ -3,7 +3,7 @@
 <suite name="Regression">
     <test name="Authentication" >
         <classes>
-            <class name="src.tests.testng.TestNGHooksTest" />
+            <class name="src.tests.authen.LoginTestWithDataProvider" />
 
         </classes>
     </test>
