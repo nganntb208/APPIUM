@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import src.driver.DriverFactory;
 import src.driver.Platform;
 import src.test_data.models.LoginCred;
+import src.test_data.utils.DataObjectBuilder;
 import src.test_flows.authentication.LoginFlow;
 
 import java.util.ArrayList;
@@ -36,12 +37,14 @@ public class LoginTestWithDataProvider {
 
     @DataProvider(name = "loginData")
     private LoginCred[] loginCredDataSet() {
-        LoginCred[] loginCredsData = new LoginCred[] {
-            new LoginCred("", ""),
-            new LoginCred("teo@sth.com", "1234567"),
-            new LoginCred("teo@", "12345678"),
-            new LoginCred("teo@sth.com", "12345678")
-        };
-        return loginCredsData;
+//        LoginCred[] loginCredsData = new LoginCred[] {
+//            new LoginCred("", ""),
+//            new LoginCred("teo@sth.com", "1234567"),
+//            new LoginCred("teo@", "12345678"),
+//            new LoginCred("teo@sth.com", "12345678")
+//        };
+
+        String fileLocation = "/src/test/java/src/tests/gson/login.json";
+        return DataObjectBuilder.buildDataObject(fileLocation, LoginCred[].class);
     }
 }

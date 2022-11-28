@@ -12,6 +12,8 @@ import java.util.concurrent.TimeUnit;
 
 public class DriverFactory implements MobileCapabilityTypeEx, AppPackages {
 
+    private AppiumDriver<MobileElement> appiumDriver;
+
     public static AppiumDriver<MobileElement> getDriver(Platform platform) {
         AppiumDriver<MobileElement> driver;
 
@@ -47,5 +49,9 @@ public class DriverFactory implements MobileCapabilityTypeEx, AppPackages {
 
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         return driver;
+    }
+
+    public AppiumDriver<MobileElement> getDriver(Platform platform, String udid, String systemPort) {
+
     }
 }
